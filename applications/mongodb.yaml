@@ -11,7 +11,7 @@ spec:
     path: mongodb            # path to the chart inside the repo
     helm:
       valueFiles:
-        - values-dev.yaml
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: roboshop
