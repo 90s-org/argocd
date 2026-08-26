@@ -2,5 +2,5 @@ controller:
   serviceAccount:
     create: true
     name: ebs-csi-controller-sa
-    annotations:
-      eks.amazonaws.com/role-arn: <your-ebs-csi-driver-role-arn>   # from `eksctl create iamserviceaccount ... --role-only`, or a Terraform output
+    # no IRSA role-arn — relies on the EC2 node group's own IAM instance role
+    # having EBS permissions attached, same as a bare `helm install` with no overrides
