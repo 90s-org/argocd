@@ -1,0 +1,6 @@
+clusterName: roboshop
+region: us-east-1
+vpcId: <your-vpc-id>
+serviceAccount:
+  create: false            # IAM role/IRSA trust provisioned outside GitOps
+  name: aws-load-balancer-controller

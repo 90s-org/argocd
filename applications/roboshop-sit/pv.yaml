@@ -1,0 +1,16 @@
+# Placeholder — no persistent storage claimed yet by anything in roboshop-sit.
+# With dynamic provisioning (ebs-gp3 / efs-sc StorageClasses from applications/sc/
+# already installed), workloads normally just declare a PersistentVolumeClaim —
+# you don't hand-write a PersistentVolume unless adopting pre-existing storage.
+#
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: <name>
+#   namespace: roboshop-sit
+# spec:
+#   accessModes: ["ReadWriteOnce"]
+#   storageClassName: ebs-gp3
+#   resources:
+#     requests:
+#       storage: 5Gi

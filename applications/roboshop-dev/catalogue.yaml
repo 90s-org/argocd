@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: catalogue
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"   # after namespace.yaml (-1) in this same sync; stateless, no storage/lbc dependency today
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/90s-org/catalogue-config.git
+    targetRevision: main
+    path: .                    # chart lives at the repo root in catalogue-config
+    helm:
+      valueFiles:
+        - values-dev.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: roboshop-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

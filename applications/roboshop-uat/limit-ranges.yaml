@@ -1,0 +1,17 @@
+# Placeholder — no LimitRange defined yet for roboshop-uat.
+# Example shape, tune the numbers before uncommenting:
+#
+# apiVersion: v1
+# kind: LimitRange
+# metadata:
+#   name: roboshop-uat-defaults
+#   namespace: roboshop-uat
+# spec:
+#   limits:
+#     - type: Container
+#       default:
+#         cpu: "200m"
+#         memory: "256Mi"
+#       defaultRequest:
+#         cpu: "100m"
+#         memory: "128Mi"

@@ -1,0 +1,26 @@
+# Placeholder — no RBAC policy defined yet for roboshop-prod.
+# Fill in once you know which humans/service accounts need what access here, e.g.:
+#
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: Role
+# metadata:
+#   name: roboshop-prod-edit
+#   namespace: roboshop-prod
+# rules:
+#   - apiGroups: ["", "apps"]
+#     resources: ["pods", "deployments", "services", "configmaps"]
+#     verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+# ---
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: RoleBinding
+# metadata:
+#   name: roboshop-prod-edit-binding
+#   namespace: roboshop-prod
+# subjects:
+#   - kind: ServiceAccount
+#     name: <name>
+#     namespace: <namespace>
+# roleRef:
+#   kind: Role
+#   name: roboshop-prod-edit
+#   apiGroup: rbac.authorization.k8s.io

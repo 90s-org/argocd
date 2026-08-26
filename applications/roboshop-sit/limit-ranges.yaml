@@ -1,0 +1,17 @@
+# Placeholder — no LimitRange defined yet for roboshop-sit.
+# Example shape, tune the numbers before uncommenting:
+#
+# apiVersion: v1
+# kind: LimitRange
+# metadata:
+#   name: roboshop-sit-defaults
+#   namespace: roboshop-sit
+# spec:
+#   limits:
+#     - type: Container
+#       default:
+#         cpu: "200m"
+#         memory: "256Mi"
+#       defaultRequest:
+#         cpu: "100m"
+#         memory: "128Mi"

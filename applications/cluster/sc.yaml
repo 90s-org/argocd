@@ -1,23 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: catalogue
+  name: storage-classes
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/90s-org/roboshop-helm.git
+    repoURL: https://github.com/90s-org/argocd.git
     targetRevision: main
-    path: catalogue            # path to the chart inside the repo
-    helm:
-      valueFiles:
-        - values-dev.yaml
+    path: applications/cluster/sc
   destination:
     server: https://kubernetes.default.svc
-    namespace: roboshop
+    namespace: default    # StorageClass is cluster-scoped; namespace is required by ArgoCD but unused
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-    - CreateNamespace=true

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"   # always pre-exists in K8s; kept for consistency with the other namespace folders
+  labels:
+    purpose: poc

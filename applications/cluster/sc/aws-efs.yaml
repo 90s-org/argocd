@@ -1,0 +1,10 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: efs-sc
+provisioner: efs.csi.aws.com
+reclaimPolicy: Delete
+parameters:
+  provisioningMode: efs-ap
+  fileSystemId: <your-efs-filesystem-id>   # pre-provisioned outside GitOps (Terraform/eksctl), same pattern as aws-lbc.yaml's vpcId placeholder
+  directoryPerms: "700"
