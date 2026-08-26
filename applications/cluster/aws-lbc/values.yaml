@@ -1,8 +1,0 @@
-clusterName: roboshop
-region: us-east-1
-vpcId: <your-vpc-id>
-serviceAccount:
-  create: true
-  name: aws-load-balancer-controller
-  # no IRSA role-arn — relies on the EC2 node group's own IAM instance role
-  # having ELB/EC2 permissions attached, same as a bare `helm install` with no overrides

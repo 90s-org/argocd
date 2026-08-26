@@ -7,16 +7,14 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  sources:
-    - repoURL: https://kubernetes-sigs.github.io/aws-efs-csi-driver
-      chart: aws-efs-csi-driver
-      targetRevision: 3.x
-      helm:
-        valueFiles:
-          - $values/applications/cluster/efs-csi-driver/values.yaml
-    - repoURL: https://github.com/90s-org/argocd.git
-      targetRevision: main
-      ref: values
+  source:
+    chart: aws-efs-csi-driver
+    repoURL: https://kubernetes-sigs.github.io/aws-efs-csi-driver
+    targetRevision: 3.x   # not pinned to an exact version yet — do that once you confirm one, same as ebs-csi-driver's 2.64.0
+    helm:
+      releaseName: efs-csi-driver
+      # no values — chart defaults (serviceAccount.create: true, no IRSA annotation)
+      # rely on the EC2 node group's own IAM instance role having EFS permissions attached
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system

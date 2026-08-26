@@ -7,16 +7,21 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  sources:
-    - repoURL: https://aws.github.io/eks-charts
-      chart: aws-load-balancer-controller
-      targetRevision: 1.9.x     # chart version — pin this like you pin base images
-      helm:
-        valueFiles:
-          - $values/applications/cluster/aws-lbc/values.yaml
-    - repoURL: https://github.com/90s-org/argocd.git
-      targetRevision: main
-      ref: values
+  source:
+    repoURL: https://aws.github.io/eks-charts
+    chart: aws-load-balancer-controller
+    targetRevision: 1.9.x     # chart version — pin this like you pin base images
+    helm:
+      releaseName: aws-load-balancer-controller
+      values: |
+        clusterName: roboshop
+        region: us-east-1
+        vpcId: <your-vpc-id>
+        serviceAccount:
+          create: true
+          name: aws-load-balancer-controller
+          # no IRSA role-arn — relies on the EC2 node group's own IAM instance role
+          # having ELB/EC2 permissions attached, same as ebs-csi-driver/efs-csi-driver
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system

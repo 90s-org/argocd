@@ -1,6 +1,0 @@
-controller:
-  serviceAccount:
-    create: true
-    name: efs-csi-controller-sa
-    # no IRSA role-arn — relies on the EC2 node group's own IAM instance role
-    # having EFS permissions attached, same as a bare `helm install` with no overrides
