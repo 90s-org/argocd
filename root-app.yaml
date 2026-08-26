@@ -3,12 +3,14 @@ kind: Application
 metadata:
   name: root-app
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: https://github.com/90s-org/argocd.git
     targetRevision: main
-    path: bootstrap             # manages cluster-root and workloads-root, not the app manifests directly
+    path: bootstrap             # manages cluster and the five namespace roots
     directory:
       recurse: false
   destination:
