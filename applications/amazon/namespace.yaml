@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: amazon
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"   # must exist before rbac/limit-ranges/workloads in this same sync
+  labels:
+    environment: dev
+    project: roboshop
+    purpose: poc
