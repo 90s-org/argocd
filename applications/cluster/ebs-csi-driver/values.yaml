@@ -1,4 +1,6 @@
 controller:
   serviceAccount:
-    create: false           # IAM role/IRSA trust provisioned outside GitOps
+    create: true
     name: ebs-csi-controller-sa
+    annotations:
+      eks.amazonaws.com/role-arn: <your-ebs-csi-driver-role-arn>   # from `eksctl create iamserviceaccount ... --role-only`, or a Terraform output
