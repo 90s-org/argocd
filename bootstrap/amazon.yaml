@@ -13,8 +13,6 @@ spec:
     repoURL: https://github.com/90s-org/argocd.git
     targetRevision: main
     path: applications/amazon
-    directory:
-      recurse: false
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
