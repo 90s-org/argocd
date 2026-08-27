@@ -1,0 +1,10 @@
+	echo "kubectl patch configmap argocd-cm -n argocd --type merge -p '{\"data\":{\"timeout.reconciliation\":\"45s\"}}'
+kubectl rollout restart statefulset argocd-application-controller -n argocd"
+
+echo "kubectl patch configmap argocd-cmd-params-cm -n argocd --type merge -p '{\"data\":{\"timeout.reconciliation\":\"45s\"}}'
+kubectl patch configmap argocd-cmd-params-cm -n argocd --type merge -p '{"data":{"timeout.reconciliation":"45s"}}'
+kubectl rollout restart statefulset argocd-application-controller -n argocd
+kubectl get cm argocd-cmd-params-cm -n argocd -o jsonpath='{.data.timeout\.reconciliation}'"
+
+kubectl patch configmap argocd-cm -n argocd --type merge -p '{"data":{"accounts.admin":"apiKey, login"}}'
+kubectl rollout restart deployment argocd-server -n argocd
